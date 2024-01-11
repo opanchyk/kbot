@@ -18,11 +18,11 @@ get:
 build: format get
 	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o kbot -ldflags "-X="github.com/OlePan/kbot/cmd.appVesion=${VERSION}
 
-# image: 
-#    docker build -t . ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
+image: 
+	docker build -t . ${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
-# push:
-#    docker push ${REGISTR}/${APP}:${VERSION}-${TARGETARCH}
+push:
+	docker push ${REGISTR}/${APP}:${VERSION}-${TARGETARCH}
 
 clean:
 	rm -rf kbot
