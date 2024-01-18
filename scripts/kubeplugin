@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Check if sufficient arguments are provided
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <namespace> <resource-type>"
+    exit 1
+fi
+
+NAMESPACE=$1
+RESOURCE_TYPE=$2
+
+# Retrieve resource usage statistics from Kubernetes
+kubectl get $RESOURCE_TYPE -n $NAMESPACE --no-headers | while read -r NAME CPU MEMORY REST
+do
+  # Output the statistics to the console in the specified format
+  echo "Resource: $RESOURCE_TYPE, Namespace: $NAMESPACE, Name: $NAME, CPU: $CPU, Memory: $MEMORY"
+done
